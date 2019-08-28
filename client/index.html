@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>JS Game</title>
+  <link rel="stylesheet" href="./src/css/main.css">
 </head>
 <body>
-  <div class="actions">
-    <button id="atack" class="actions">Atack</button>
-    <button id="dodge" class="actions">Dodge</button>
-    <button id="fireball" class="actions">Fireball</button>
+  <div class="actions w-full bg-gray-200 flex space-between">
+    <button class="border b-1 bg-gray-800 rounded-lg px-4 py-2 text-white" id="atack" class="actions">Atack</button>
+    <button class="border b-1 bg-gray-800 rounded-lg px-4 py-2 text-white" id="dodge" class="actions">Dodge</button>
+    <button class="border b-1 bg-gray-800 rounded-lg px-4 py-2 text-white" id="fireball" class="actions">Fireball</button>
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
