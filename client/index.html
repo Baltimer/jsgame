@@ -8,13 +8,10 @@
   <link rel="stylesheet" href="./src/css/main.css">
 </head>
 <body>
-  <div class="actions w-full bg-gray-200 flex space-between">
-    <button class="border b-1 bg-gray-800 rounded-lg px-4 py-2 text-white" id="atack" class="actions">Atack</button>
-    <button class="border b-1 bg-gray-800 rounded-lg px-4 py-2 text-white" id="dodge" class="actions">Dodge</button>
-    <button class="border b-1 bg-gray-800 rounded-lg px-4 py-2 text-white" id="fireball" class="actions">Fireball</button>
-  </div>
+  <div id="game-container"></div>
 
   <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.20.1/dist/phaser.js"></script>
   <script src="src/js/client.js" type="module"></script>
 </body>
 </html>

@@ -1,21 +1,45 @@
-const writeEvent = (text) => {
-  const body = document.querySelector('body');
-  const p = document.createElement('p');
-  p.innerHTML = text;
-  body.appendChild(p);
-}
-
-const addButtonListeners = () => {
-  ['atack', 'dodge', 'fireball'].forEach((id) => {
-    const button = document.getElementById(id);
-    button.addEventListener('click', () => {
-      socket.emit('action', id);
-    })
-  })
-}
-
 const socket = io();
 
-socket.on('message', writeEvent);
+const config = {
+  type: Phaser.AUTO, // Which renderer to use
+  width: 800, // Canvas width in pixels
+  height: 600, // Canvas height in pixels
+  parent: "game-container", // ID of the DOM element to add the canvas to
+  scene: {
+    preload: preload,
+    create: create,
+    update: update
+  }
+};
 
-addButtonListeners()
+const game = new Phaser.Game(config);
+
+function preload() {
+  this.load.image("mario-tiles", "/src/tiles/tilesets/mario-sprites.png");
+}
+
+function create() {
+  // Load a map from a 2D array of tile indices
+  const level = [
+    [  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0 ],
+    [  0,   1,   2,   3,   0,   0,   0,   1,   2,   3,   0 ],
+    [  0,   5,   6,   7,   0,   0,   0,   5,   6,   7,   0 ],
+    [  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0 ],
+    [  0,   0,   0,  14,  13,  14,   0,   0,   0,   0,   0 ],
+    [  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0 ],
+    [  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0 ],
+    [  0,   0,  14,  14,  14,  14,  14,   0,   0,   0,  15 ],
+    [  0,   0,   0,   0,   0,   0,   0,   0,   0,  15,  15 ],
+    [ 35,  36,  37,   0,   0,   0,   0,   0,  15,  15,  15 ],
+    [ 39,  39,  39,  39,  39,  39,  39,  39,  39,  39,  39 ]
+  ];
+
+  // When loading from an array, make sure to specify the tileWidth and tileHeight
+  const map = this.make.tilemap({ data: level, tileWidth: 16, tileHeight: 16 });
+  const tiles = map.addTilesetImage("mario-tiles");
+  const layer = map.createStaticLayer(0, tiles, 0, 0);
+}
+
+function update(time, delta) {
+  // Runs once per frame for the duration of the scene
+}
